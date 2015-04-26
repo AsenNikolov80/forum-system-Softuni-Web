@@ -39,14 +39,38 @@ class Main {
         if (!empty($limit)) {
             $query.=" LIMIT $limit";
         }
+        echo $query;
         $resultSet = $this->db->query($query);
         $results = [];
-        if (!empty($resultSet)) {
-            while ($row = $resultSet->fetch->assoc()) {
+        if (!empty($resultSet) && $resultSet->num_rows > 0) {
+            while ($row = $resultSet->fetch_assoc()) {
                 $results[] = $row;
             }
         }
         return $results;
+    }
+
+    public function insert($args = array()) {
+        $username = $args[0];
+        $password = $args[1];
+        $fullname = $args[2];
+        $email = $args[3];
+        $def = array(
+            'table' => $this->table,
+        );
+        $res = array_merge($def, $args);
+        extract($res);
+        $query = "INSERT INTO {$table}(`username`,`password`,`fullname`,`email`) VALUES(?,?,?,?)";
+        $stmt = $this->db->prepare($query);
+//        if (!$stmt) {
+//            echo $this->db->error;
+//        }
+        $stmt->bind_param('ssss', $username, $password, $fullname, $email);
+        if ($stmt->execute()) {
+            echo 'You have registered!';
+        } else {
+            echo 'Email or username alredy exists';
+        }
     }
 
 }

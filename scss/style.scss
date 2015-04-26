@@ -1,10 +1,19 @@
 body{
-    box-sizing: border-box;
-    background-color: bisque;
+    background-color: lightsteelblue;
+    font-size: 1.2em;
 }
-
-header{
-    ul, li{
-        display: inline-block;
-    }
+li{
+    display: inline-block;
+    background-color: buttonface;
+    margin-right: 10px;
+}
+a{
+    width: 100%;
+    display: block;
+    padding: 5px;
+}
+input{
+    display: block;
+    padding: 5px;
+    margin: 10px;
 }

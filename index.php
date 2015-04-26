@@ -3,6 +3,7 @@
 include_once './controllers/Main.php';
 include_once './config/db.php';
 include_once './lib/Database.php';
+include_once './lib/Auth.php';
 include_once './models/Main.php';
 
 define('ROOT_DIR', dirname(__FILE__));
@@ -28,4 +29,4 @@ $instance = new $controllerClass();
 if (method_exists($instance, $action)) {
     call_user_func_array(array($instance, $action), array($params));
 }
-$dbConn = \Lib\Database::getInstance()->getDb();
+//$dbConn = \Lib\Database::getInstance()->getDb();
