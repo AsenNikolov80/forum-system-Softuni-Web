@@ -1,5 +1,7 @@
 <?php
 
+mb_internal_encoding('UTF8');
+
 include_once './controllers/Main.php';
 include_once './config/db.php';
 include_once './lib/Database.php';
@@ -18,15 +20,34 @@ $params = array();
 if (count($requestArray) > 1) {
     $controller = $requestArray[0];
     $action = $requestArray[1];
+
     if (isset($requestArray[2])) {
         $params = $requestArray[2];
     }
-    include_once './controllers/' . $controller . '.php';
+    if (file_exists('./controllers/' . $controller . '.php')) {
+        include_once './controllers/' . $controller . '.php';
+    } else {
+        header('Location:' . ROOT_URL);
+        die;
+    }
 }
-
+if (!preg_match('/[a-zA-Z0-9_]/', $controller)) {
+    die("brutal");
+}
 $controllerClass = '\Controllers\\' . ucfirst($controller);
 $instance = new $controllerClass();
 if (method_exists($instance, $action)) {
     call_user_func_array(array($instance, $action), array($params));
+} else {
+    header('Location:' . ROOT_URL);
+    die;
 }
-//$dbConn = \Lib\Database::getInstance()->getDb();
+
+////function __autoload($className){
+//    if(file_exists('controllers/'.$className.'.php')){
+//        require_once 'controllers/'.$className.'.php';
+//    }
+//    if(file_exists('models/'.$className.'.php')){
+//        require_once 'models/'.$className.'.php';
+//    }
+//}

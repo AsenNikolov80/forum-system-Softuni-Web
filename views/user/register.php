@@ -1,4 +1,4 @@
-<form method="POST">
+<form method="POST" action="<?=ROOT_URL.'user/register'?>">
     <h2>Register here!</h2>
         
     <input type="text" name="fullname" placeholder="Full name..." required/>
@@ -6,6 +6,6 @@
     <input type="text" name="username" placeholder="Username..." required/>
     <input type="password" name="password" placeholder="password..." required/>
     <input type="password" name="password2" placeholder="retype password..." required/>
-    <input type="submit" name="register" />
+    <input type="submit" name="register" value="Register" />
     
 </form>

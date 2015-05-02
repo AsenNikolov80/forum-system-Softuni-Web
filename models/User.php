@@ -8,12 +8,12 @@ class User extends Main {
         parent::__construct(array('table' => 'users'));
     }
 
-    public function register($param = []) {
-        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
-        $fullname = filter_input(INPUT_POST, 'fullname', FILTER_SANITIZE_SPECIAL_CHARS);
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
-        $password2 = filter_input(INPUT_POST, 'password2', FILTER_SANITIZE_SPECIAL_CHARS);
+    public function register($param = array()) {
+        $username = mysqli_real_escape_string($this->db, $_POST['username']);
+        $fullname = mysqli_real_escape_string($this->db, $_POST['fullname']);
+        $email = mysqli_real_escape_string($this->db, $_POST['email']);
+        $password = mysqli_real_escape_string($this->db, $_POST['password']);
+        $password2 = mysqli_real_escape_string($this->db, $_POST['password2']);
         if (empty($username) || empty($password) || empty($email) || empty($fullname)) {
             echo 'All fields are required!';
         } else {
@@ -26,8 +26,27 @@ class User extends Main {
         }
     }
 
-    public function login($param = []) {
-        
+    public function login($param = array()) {
+        $username = mysqli_real_escape_string($this->db, $_POST['username']);
+        $password = mysqli_real_escape_string($this->db, $_POST['password']);
+        $args = ['where' => "`username`='$username' AND `password`='$password'"];
+        $result = $this->find($args);
+        if (isset($result[0])) {
+            $_SESSION['id'] = $result[0]['id'];
+            $_SESSION['username'] = $result[0]['username'];
+            $_SESSION['email'] = $result[0]['email'];
+            $this->id = $result[0]['id'];
+            $_SESSION['fullname'] = $result[0]['fullname'];
+            header('Location:' . ROOT_URL . 'secure/index');
+            die;
+        } else {
+            echo 'Invalid login';
+        }
     }
 
+    public function logout() {
+        session_destroy();
+        header('Location:' . ROOT_URL);
+        die;
+    }
 }

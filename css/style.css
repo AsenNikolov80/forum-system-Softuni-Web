@@ -5,7 +5,7 @@ body {
 li {
   display: inline-block;
   background-color: buttonface;
-  margin-right: 9px; }
+  margin-right: 10px; }
 
 a {
   width: 100%;
@@ -16,5 +16,12 @@ input {
   display: block;
   padding: 5px;
   margin: 10px; }
+
+table {
+  border: 1px solid black;
+  border-collapse: collapse; }
+  table td, table th {
+    border: 1px solid black;
+    padding: 2px 5px; }
 
 /*# sourceMappingURL=style.css.map */

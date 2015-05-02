@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/forum-system-local/models/Main.php</file>
-            <file>file:/D:/xampp/htdocs/forum-system-local/views/main/login.php</file>
-            <file>file:/D:/xampp/htdocs/forum-system-local/index.php</file>
-            <file>file:/D:/xampp/htdocs/forum-system-local/views/elements/header.php</file>
-            <file>file:/D:/xampp/htdocs/forum-system-local/views/elements/footer.php</file>
-            <file>file:/D:/xampp/htdocs/forum-system-local/views/main/register.php</file>
-            <file>file:/D:/xampp/htdocs/forum-system-local/controllers/Main.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/models/User.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/controllers/Main.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/views/secure/edit.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/scss/style.scss</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/controllers/Secure.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/views/secure/index.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/models/Main.php</file>
         </group>
     </open-files>
 </project-private>
