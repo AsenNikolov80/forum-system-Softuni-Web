@@ -27,9 +27,11 @@ class Main {
             'table' => $this->table,
             'limit' => $this->limit,
             'where' => '',
-            'columns' => '*'
+            'columns' => '*',
+            'orderBy' => 'id desc'
         );
         $res = array_merge($def, $args);
+//        print_r($res);die;
         extract($res);
         $query = "SELECT $columns FROM $table";
         if (!empty($where)) {
@@ -38,7 +40,10 @@ class Main {
         if (!empty($limit)) {
             $query.=" LIMIT $limit";
         }
-//        echo $query;
+        if (!empty($orderBy)) {
+            $query.=" ORDER BY $orderBy";
+        }
+//        echo $query;die;
         $resultSet = $this->db->query($query);
         $results = [];
         if (!empty($resultSet) && $resultSet->num_rows > 0) {
@@ -50,25 +55,36 @@ class Main {
     }
 
     public function insert($args = array()) {
-        $username = $args[0];
-        $password = $args[1];
-        $fullname = $args[2];
-        $email = $args[3];
+        // key is the column name
+        foreach ($args as $key => $value) {
+            $args[$key] = mysqli_real_escape_string($this->db, $value);
+        }
         $def = array(
             'table' => $this->table,
         );
-        $res = array_merge($def, $args);
-        extract($res);
-        $query = "INSERT INTO {$table}(`username`,`password`,`fullname`,`email`) VALUES(?,?,?,?)";
-        $stmt = $this->db->prepare($query);
+        $resultArray = array_merge($def, $args);
+//        extract($res);
+        $columns = [];
+        $values = [];
+        foreach ($resultArray as $key => $value) {
+            if ($key != 'table') {
+                $columns[] = '`' . $key . '`';
+                $values[] = '\'' . $value . '\'';
+            }
+        }
+        $columns = implode(',', $columns);
+        $values = implode(',', $values);
+        $query = "INSERT INTO {$resultArray['table']}($columns) VALUES($values)";
+        $stmt = $this->db->query($query);
+
 //        if (!$stmt) {
 //            echo $this->db->error;
 //        }
-        $stmt->bind_param('ssss', $username, $password, $fullname, $email);
-        if ($stmt->execute()) {
-            echo 'You have registered!';
+//        $stmt->bind_param('ssss', $username, $password, $fullname, $email);
+        if ($this->db->error == '') {
+            return true;
         } else {
-            echo 'Email or username alredy exists';
+            return FALSE;
         }
     }
 

@@ -12,6 +12,14 @@ a {
   display: block;
   padding: 5px; }
 
+footer {
+  text-align: center;
+  margin: 0 auto; }
+  footer a {
+    width: 6%;
+    max-width: fit-content;
+    display: inline-block; }
+
 input {
   display: block;
   padding: 5px;
@@ -23,5 +31,68 @@ table {
   table td, table th {
     border: 1px solid black;
     padding: 2px 5px; }
+
+.questions {
+  margin: 10px;
+  background-color: #f89a9a;
+  box-shadow: 0 2px 2px black;
+  padding: 5px; }
+  .questions div > div {
+    display: inline-block;
+    margin: 5px;
+    margin-top: 10px; }
+
+.container {
+  background-color: #fbaf79;
+  margin: 0 auto;
+  box-shadow: 0 0 10px black;
+  padding: 5px;
+  width: 90%; }
+  .container #first {
+    font-weight: bold;
+    float: left; }
+  .container #second {
+    float: right; }
+
+.clearfix {
+  width: 0;
+  height: 1px;
+  clear: both;
+  display: block;
+  margin-bottom: 10px; }
+
+.innerContainer div {
+  display: inline-block;
+  margin-right: 10px; }
+
+.text {
+  background-color: wheat;
+  padding: 5px;
+  margin: 5px; }
+
+.addQuestion {
+  border: 1px solid #0cbb12;
+  padding: 5px;
+  box-shadow: 0 0 10px black;
+  width: 26%; }
+  .addQuestion input {
+    display: inline-block;
+    margin: 0;
+    width: 200px; }
+  .addQuestion input[type='submit'] {
+    width: 150px;
+    font-size: 1.1em; }
+  .addQuestion div div {
+    width: 25%;
+    margin: 5px;
+    padding: 10px;
+    display: inline-block; }
+  .addQuestion select {
+    padding: 2px;
+    width: 213px; }
+  .addQuestion textarea {
+    width: 208px;
+    height: 200px;
+    vertical-align: middle; }
 
 /*# sourceMappingURL=style.css.map */

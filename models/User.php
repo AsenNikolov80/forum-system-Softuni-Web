@@ -20,8 +20,14 @@ class User extends Main {
             if ($password !== $password2) {
                 echo 'Password must match!';
             } else {
-                $args = [$username, $password, $fullname, $email];
-                $this->insert($args);
+                $args = ['username' => $username, 'password' => $password,
+                    'fullname' => $fullname, 'email' => $email];
+                $result = $this->insert($args);
+                if($result){
+                    echo 'You have registered!';
+                }  else {
+                    echo 'Something is wrong!';    
+                }
             }
         }
     }
@@ -49,4 +55,5 @@ class User extends Main {
         header('Location:' . ROOT_URL);
         die;
     }
+
 }

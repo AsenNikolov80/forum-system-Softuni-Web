@@ -15,7 +15,7 @@ class Main {
     public function __construct($viewsDir = '/views/main/', $modelName = 'main', $layout = '/views/layouts/default.php') {
         $this->viewsDir = $viewsDir;
         $this->layout = ROOT_DIR . $layout;
-        include_once ROOT_DIR . '/models/' . $modelName . '.php';
+        include_once ROOT_DIR . '/models/' . ucfirst($modelName) . '.php';
         $modelClass = '\Models\\' . ucfirst($modelName);
         $this->modelName = new $modelClass(array('table' => 'users'));
         $auth = \Lib\Auth::getInstance();
@@ -25,7 +25,7 @@ class Main {
 
     public function index() {
         if($this->isLogged){
-            $this->layout='/views/layouts/secure.php';
+            $this->layout='views/layouts/secure.php';
             $this->viewsDir='/views/secure/';
         }
         $templateName = ROOT_DIR . $this->viewsDir . 'index.php';
