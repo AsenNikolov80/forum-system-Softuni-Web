@@ -8,17 +8,21 @@ class Question extends Main {
         parent::__construct(array('table' => 'questions'));
     }
 
-    public function getUsername($userId) {
-        $userId = intval($userId);
-        $query = "SELECT username FROM users WHERE id=$userId";
-        $result = $this->db->query($query);
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                $username = $row['username'];
-            }
-            return $username;
-        }
-        return FALSE;
+    public function getVisits($id) {
+        $id = intval($id);
+        $selectQuery = "SELECT `visits` FROM `questions` WHERE `id`=$id";
+        $result = $this->db->query($selectQuery);
+        $visits = $result->fetch_assoc()['visits'];
+        return $visits;
+    }
+
+    public function setVisits($visits, $viewId) {
+        $visits = intval($visits);
+        $query = "UPDATE `questions` SET `visits`=? WHERE `id`=?";
+        $visits++;
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $visits, $viewId);
+        $stmt->execute();
     }
 
 }

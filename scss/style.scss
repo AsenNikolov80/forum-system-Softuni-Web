@@ -8,7 +8,6 @@ li{
     margin-right: 10px;
 }
 a{
-    width: 100%;
     display: block;
     padding: 5px;
 }
@@ -16,7 +15,7 @@ footer{
     text-align: center;
     margin: 0 auto;
     a{
-        width: 6%;
+        width: 4%;
         max-width: fit-content;
         display: inline-block;
     }
@@ -42,10 +41,11 @@ table{
     padding: 5px;
     div>div{
         display: inline-block;
-        margin: 5px;
-        margin-top: 10px;
+        margin: 10px;
     }
-
+    div:nth-child(2){
+        padding: 6px;
+    }
 }
 .container{
     background-color: #fbaf79;
@@ -108,5 +108,46 @@ table{
         width: 208px;
         height: 200px;
         vertical-align: middle;
+    }
+}
+.categories{
+    width: 25%;
+    display: inline-block;
+    vertical-align:top;
+    ul{
+        li{
+            display: block;
+            margin: 15px;
+            padding: 3px;
+        }
+    }
+}
+#questionContainer{
+    display: inline-block;
+    width: 70%;
+    padding: 10px;
+}
+.inactive{
+    background-color: gray;
+}
+.active{
+    background-color: red;
+}
+
+#outer{
+    display: inline-block;
+    width: 70%;
+    form{
+        width: 50%;
+        text-align:right;
+        input{
+            display: inline-block;
+        }
+        textarea{
+            resize: vertical;
+            display: table-cell;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
     }
 }

@@ -30,8 +30,8 @@ class Main {
             'columns' => '*',
             'orderBy' => 'id desc'
         );
+//        print_r($args);
         $res = array_merge($def, $args);
-//        print_r($res);die;
         extract($res);
         $query = "SELECT $columns FROM $table";
         if (!empty($where)) {
@@ -75,6 +75,7 @@ class Main {
         $columns = implode(',', $columns);
         $values = implode(',', $values);
         $query = "INSERT INTO {$resultArray['table']}($columns) VALUES($values)";
+//        echo $query;die;
         $stmt = $this->db->query($query);
 
 //        if (!$stmt) {

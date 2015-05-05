@@ -12,7 +12,7 @@
         </select>
     </div>
     <div>
-        <div>Tags:</div> <input type="text" name="tags" required />
+        <div>Tags:</div> <input type="text" name="tags" required pattern="[a-zA-Zа-яА-Я ,]{1,}"/>
         
     </div>
     <div style="text-align: center"><input type="submit" name="add" value="Ask question" required/></div>
