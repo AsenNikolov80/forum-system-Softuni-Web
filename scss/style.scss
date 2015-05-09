@@ -254,3 +254,19 @@ h2{
     margin: 0 auto;
     margin-bottom: 20px;
 }
+#addNewAnswerButton,input[type='submit']{
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: #ccc;
+    box-shadow: 0 0 20px black;
+    padding: 5px;
+    &:hover{
+        background-color: green;
+        color: white;
+        transition: 0.5s; 
+    }
+}
+table{
+    margin: 10px;
+}

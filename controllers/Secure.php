@@ -17,7 +17,12 @@ class Secure extends Main {
             if ($_SESSION['token'] === $_POST['token']) {
                 unset($_POST['edit']);
                 unset($_POST['token']);
-                $this->modelName->update($this->userLogged['id'], $_POST);
+                if (empty($_POST['username']) && empty($_POST['fullname']) && empty($_POST['email'])) {
+                    $_SESSION['errorMsg'] = 'You must fill at least one field!';
+                    $_SESSION['token'] = hash('whirlpool', rand(-1000000, 1000000));
+                } else {
+                    $this->modelName->update($this->userLogged['id'], $_POST);
+                }
             } else {
                 $_SESSION['errorMsg'] = 'Error occured! Try again please!';
                 $_SESSION['token'] = hash('whirlpool', rand(-1000000, 1000000));

@@ -1,7 +1,4 @@
 Здравей,
 <?php
 echo htmlspecialchars($this->userLogged['fullname']);
-?>
-<div>
-    <a href="<?= ROOT_URL . 'secure/edit' ?>">Редакция на профила</a>
-</div>
+?>! Може да продължите разглеждането на форума, добавяне на нови въпроси и отговори.

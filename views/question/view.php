@@ -41,7 +41,7 @@ if (isset($_SESSION['errorMsg'])) {
         </div>
     </div>
     <div id="answers"></div>
-    <button onclick="addNewAnswer()" style="margin-left: 5%">Add new answer</button>
+    <button onclick="addNewAnswer()" id="addNewAnswerButton" style="margin-left: 5%">Add new answer</button>
 </div>
 
 <div id="dialog" title="Edit question"></div>
