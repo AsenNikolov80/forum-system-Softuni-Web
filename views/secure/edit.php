@@ -1,3 +1,9 @@
+<?php if (isset($_SESSION['errorMsg'])) {    ?>
+    <div id="errorDiv"><?= $_SESSION['errorMsg']; ?></div>
+    
+    <?php unset($_SESSION['errorMsg']);
+}
+?>
 <form action="" method="POST">
     <table>
         <thead>
@@ -27,4 +33,5 @@
         ?>
     </table>
     <input type="submit" name="edit" />
+    <input type="hidden" value="<?= $_SESSION['token'] ?>" name="token" />
 </form>

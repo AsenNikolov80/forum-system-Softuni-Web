@@ -25,4 +25,14 @@ class Question extends Main {
         $stmt->execute();
     }
 
+    public function getPages($categoryId) {
+        if ($categoryId == 0) {
+            $result = $this->find(['columns' => 'COUNT(id)']);
+        } else {
+
+            $result = $this->find(['columns' => 'COUNT(id)', 'where' => "categoryId=$categoryId"]);
+        }
+        return $result[0]['COUNT(id)'];
+    }
+
 }

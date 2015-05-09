@@ -20,13 +20,14 @@ class User extends Main {
             if ($password !== $password2) {
                 echo 'Password must match!';
             } else {
+                $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 14]);
                 $args = ['username' => $username, 'password' => $password,
                     'fullname' => $fullname, 'email' => $email];
                 $result = $this->insert($args);
-                if($result){
+                if ($result) {
                     echo 'You have registered!';
-                }  else {
-                    echo 'Something is wrong!';    
+                } else {
+                    echo 'Something is wrong!';
                 }
             }
         }
@@ -35,9 +36,10 @@ class User extends Main {
     public function login($param = array()) {
         $username = mysqli_real_escape_string($this->db, $_POST['username']);
         $password = mysqli_real_escape_string($this->db, $_POST['password']);
-        $args = ['where' => "`username`='$username' AND `password`='$password'"];
+        $args = ['where' => "`username`='$username'"];
         $result = $this->find($args);
-        if (isset($result[0])) {
+        $passwordMatch = password_verify($password, $result[0]['password']);
+        if (isset($result[0]) && $passwordMatch) {
             $_SESSION['id'] = $result[0]['id'];
             $_SESSION['username'] = $result[0]['username'];
             $_SESSION['email'] = $result[0]['email'];
@@ -51,7 +53,7 @@ class User extends Main {
     }
 
     public function getUsername($userId) {
-        
+
         $userId = intval($userId);
         $query = "SELECT username FROM users WHERE id=$userId";
         $result = $this->db->query($query);
@@ -63,7 +65,19 @@ class User extends Main {
         }
         return FALSE;
     }
-    
+
+    public function update($id, $args) {
+        parent::update($id, $args);
+        $this->updateUserInfo($id);
+    }
+
+    public function updateUserInfo($id) {
+        $updatedUser = $this->find(['where' => 'id=' . $id]);
+        $auth = \Lib\Auth::getInstance();
+        $auth->updateCurrentUser($updatedUser[0]);
+        header('Location:'.ROOT_URL.'secure/edit');die;
+    }
+
     public function logout() {
         session_destroy();
         header('Location:' . ROOT_URL);

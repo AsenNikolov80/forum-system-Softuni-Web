@@ -15,8 +15,13 @@ class User extends Main {
     public function register() {
         $this->checkForLoggedUser();
         if (isset($_POST['register'])) {
-            $this->modelName->register($_POST);
+            if ($_SESSION['token'] === $_POST['token']) {
+                $this->modelName->register($_POST);
+            } else {
+                $_SESSION['errorMsg'] = 'Error occured! Try again please!';
+            }
         }
+        $_SESSION['token'] = hash('whirlpool', rand(-1000000, 1000000));
         $templateName = ROOT_DIR . $this->viewsDir . 'register.php';
         include_once $this->layout;
     }
@@ -24,8 +29,13 @@ class User extends Main {
     public function login() {
         $this->checkForLoggedUser();
         if (isset($_POST['login'])) {
-            $this->modelName->login($_POST);
+            if ($_SESSION['token'] === $_POST['token']) {
+                $this->modelName->login($_POST);
+            } else {
+                $_SESSION['errorMsg'] = 'Error occured! Try again please!';
+            }
         }
+        $_SESSION['token'] = hash('whirlpool', rand(-1000000, 1000000));
         $templateName = ROOT_DIR . $this->viewsDir . 'login.php';
         include_once $this->layout;
     }

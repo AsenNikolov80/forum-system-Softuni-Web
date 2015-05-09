@@ -28,13 +28,8 @@ class Main {
             $this->layout='views/layouts/secure.php';
             $this->viewsDir='/views/secure/';
         }
-        $templateName = ROOT_DIR . $this->viewsDir . 'index.php';
-        include_once $this->layout;
+        header('Location:'.ROOT_URL.'question/all');die;
+//        $templateName = ROOT_DIR . $this->viewsDir . 'index.php';
+//        include_once $this->layout;
     }
-
-    public function updateUserData() {
-        $auth = \Lib\Auth::getInstance();
-        $this->userLogged = $auth->getUserData();
-    }
-
 }

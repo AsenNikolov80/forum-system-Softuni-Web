@@ -11,6 +11,7 @@ include_once './models/Main.php';
 define('ROOT_DIR', dirname(__FILE__));
 $root = explode('/', substr($_SERVER['REQUEST_URI'], 1));
 define('ROOT_URL', 'http://forum-system.asen-nikolov.eu/');
+define('PAGE_SIZE', 5);
 
 $requestArray = $root;
 $controller = 'main';
@@ -21,7 +22,7 @@ if (count($requestArray) > 1) {
     $action = $requestArray[1];
 
     if (isset($requestArray[2])) {
-        $params = $requestArray[2];
+        $params = array_splice($requestArray, 2);
     }
     if (file_exists(ROOT_DIR . '/controllers/' . ucfirst($controller) . '.php')) {
         include_once ROOT_DIR . '/controllers/' . ucfirst($controller) . '.php';
@@ -36,7 +37,7 @@ if (!preg_match('/[a-zA-Z0-9_]/', $controller)) {
 $controllerClass = '\Controllers\\' . ucfirst($controller);
 $instance = new $controllerClass();
 if (method_exists($instance, $action)) {
-    call_user_func_array(array($instance, $action), array($params));
+    call_user_func_array(array($instance, $action), $params);
 } else {
     header('Location:' . ROOT_URL);
     die;

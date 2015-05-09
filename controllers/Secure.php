@@ -14,9 +14,14 @@ class Secure extends Main {
 
     public function edit() {
         if (isset($_POST['edit'])) {
-            unset($_POST['edit']);
-            $this->modelName->update($this->userLogged['id'],$_POST);     
-            $this->updateUserData();
+            if ($_SESSION['token'] === $_POST['token']) {
+                unset($_POST['edit']);
+                unset($_POST['token']);
+                $this->modelName->update($this->userLogged['id'], $_POST);
+            } else {
+                $_SESSION['errorMsg'] = 'Error occured! Try again please!';
+                $_SESSION['token'] = hash('whirlpool', rand(-1000000, 1000000));
+            }
         }
         $this->checkForLoggedUser(__FUNCTION__);
     }
@@ -30,4 +35,5 @@ class Secure extends Main {
             die;
         }
     }
+
 }

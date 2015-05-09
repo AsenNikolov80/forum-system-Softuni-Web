@@ -1,28 +1,50 @@
 body {
-  background-color: lightsteelblue;
+  background-color: #ddd;
   font-size: 1.2em; }
+
+header {
+  text-align: center; }
+
+ul {
+  padding: 0; }
 
 li {
   display: inline-block;
-  background-color: buttonface;
-  margin-right: 10px; }
+  background-color: #75c975;
+  text-align: left;
+  margin-right: 30px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black; }
 
 a {
+  color: black;
   display: block;
-  padding: 5px; }
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 5px;
+  text-decoration: none; }
+  a:hover {
+    background-color: green;
+    color: white;
+    transition: 0.5s; }
 
 footer {
   text-align: center;
-  margin: 0 auto; }
+  margin: 40px auto; }
   footer a {
     width: 4%;
     max-width: fit-content;
     display: inline-block; }
 
+main {
+  padding: 20px; }
+
 input {
   display: block;
   padding: 5px;
-  margin: 10px; }
+  margin: 15px auto;
+  width: 40%; }
 
 table {
   border: 1px solid black;
@@ -33,8 +55,9 @@ table {
 
 .questions {
   margin: 10px;
-  background-color: #f89a9a;
+  background-color: #75c975;
   box-shadow: 0 2px 2px black;
+  border-radius: 10px;
   padding: 5px; }
   .questions div > div {
     display: inline-block;
@@ -43,7 +66,7 @@ table {
     padding: 6px; }
 
 .container {
-  background-color: #fbaf79;
+  background-color: #75c975;
   margin: 0 auto;
   box-shadow: 0 0 10px black;
   padding: 5px;
@@ -66,7 +89,6 @@ table {
   margin-right: 10px; }
 
 .text {
-  background-color: wheat;
   padding: 5px;
   margin: 5px; }
 
@@ -98,6 +120,7 @@ table {
 .categories {
   width: 25%;
   display: inline-block;
+  text-align: center;
   vertical-align: top; }
   .categories ul li {
     display: block;
@@ -109,24 +132,94 @@ table {
   width: 70%;
   padding: 10px; }
 
+#outer {
+  display: inline-block;
+  width: 70%; }
+  #outer form {
+    width: 60%;
+    text-align: right; }
+    #outer form input {
+      display: inline-block;
+      width: 40%; }
+    #outer form textarea {
+      resize: vertical;
+      display: table-cell;
+      vertical-align: middle;
+      margin-right: 10px;
+      width: 42%;
+      height: 100px; }
+
+#errorDiv {
+  text-align: center;
+  background-color: red;
+  color: whitesmoke;
+  padding: 5px;
+  margin: 10px; }
+
+.pageClass {
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  width: 25px;
+  height: 25px;
+  color: black;
+  display: inline-block; }
+
 .inactive {
   background-color: gray; }
 
 .active {
   background-color: red; }
 
-#outer {
-  display: inline-block;
-  width: 70%; }
-  #outer form {
-    width: 50%;
-    text-align: right; }
-    #outer form input {
-      display: inline-block; }
-    #outer form textarea {
-      resize: vertical;
-      display: table-cell;
-      vertical-align: middle;
-      margin-right: 10px; }
+.active, .inactive {
+  color: white;
+  padding: 5px; }
+
+.editQuestion {
+  border: 1px dotted black;
+  box-shadow: 0 0 10px blue;
+  padding: 5px; }
+  .editQuestion textarea {
+    margin-left: 10px;
+    width: 89; }
+  .editQuestion select {
+    margin-left: 10px; }
+  .editQuestion div > div {
+    margin-left: 10px; }
+  .editQuestion * {
+    font-size: 0.85em !important; }
+
+section form {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  border: 3px dashed black;
+  box-shadow: 0 0 20px black;
+  border-radius: 25px; }
+
+#addForm {
+  width: 60%;
+  float: left;
+  box-shadow: none;
+  clear: both;
+  border: 0; }
+  #addForm textarea {
+    margin-right: 0 !important; }
+
+#answers {
+  width: 90%;
+  padding: 5px;
+  margin: 20px auto; }
+  #answers .questions {
+    background-color: whitesmoke; }
+
+h2 {
+  border: 2px dashed black;
+  border-radius: 10px;
+  padding: 5px;
+  width: 86%;
+  margin: 0 auto;
+  margin-bottom: 20px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -26,13 +26,20 @@ class Question extends Main {
         include_once $this->layout;
     }
 
-    public function showQuestions($categoryId = 0) {
+    public function showQuestions($categoryId = 0, $page = 1) {
         $this->checkUserLogin();
-        if ($categoryId) {
-            $questions = $this->modelName->find(["where" => "categoryId=$categoryId"]);
-        } else {
-            $questions = $this->modelName->find();
+        $page = intval($page);
+        if ($page < 0 || $page === NULL) {
+            $page = 1;
         }
+        $pageSize = PAGE_SIZE;
+        $start = PAGE_SIZE * ($page - 1);
+        if ($categoryId) {
+            $questions = $this->modelName->find(["where" => "categoryId=$categoryId", "limit" => "$start, $pageSize"]);
+        } else {
+            $questions = $this->modelName->find(["limit" => "$start, $pageSize"]);
+        }
+        $pages = ceil($this->modelName->getPages($categoryId) / PAGE_SIZE);
         foreach ($questions as $key => $question) {
             $questions[$key] = $this->getRelations($question);
         }
@@ -42,7 +49,7 @@ class Question extends Main {
     public function view($questionId) {
         $this->checkUserLogin();
         $questionId = intval($questionId);
-        
+
         $question = $this->modelName->find(['where' => 'id=' . $questionId]);
         $question = $question[0];
         $question = $this->getRelations($question);
@@ -63,26 +70,61 @@ class Question extends Main {
     public function add() {
         $this->checkUserLogin();
         if (isset($_POST['add'])) {
-            $title = $_POST['title'];
-            $text = $_POST['text'];
-            $category = $_POST['categoryId'];
-            $tags = preg_filter('/[^a-zA-Zа-яА-Я ,]*/', '', $_POST['tags']);
-            $userId = $this->userLogged['id'];
-            $time = date('Y-m-d H:i:s');
-            $args = ['title' => $title, 'text' => $text, 'categoryId' => $category,
-                'tags' => $tags, 'userId' => $userId, 'date' => $time];
-            if (!empty($title) && !empty($text) && !empty($category) && !empty($tags)) {
-                $result = $this->modelName->insert($args);
-                if ($result) {
-                    echo 'Question is added';
+
+            if ($_SESSION['token'] === $_POST['token']) {
+                $title = $_POST['title'];
+                $text = $_POST['text'];
+                $category = intval($_POST['categoryId']);
+                $tags = preg_filter('/[^a-zA-Zа-яА-Я ,]*/', '', $_POST['tags']);
+                $userId = $this->userLogged['id'];
+                $time = date('Y-m-d H:i:s');
+                $args = ['title' => $title, 'text' => $text, 'categoryId' => $category,
+                    'tags' => $tags, 'userId' => $userId, 'date' => $time];
+                if ($category != 0 && !empty($title) && !empty($text) && !empty($category) && !empty($tags)) {
+                    $result = $this->modelName->insert($args);
+                    if ($result) {
+                        echo 'Question is added';
+                    } else {
+                        echo 'Something is wrong! Try again!';
+                    }
                 } else {
-                    echo 'Something is wrong! Try again!';
+                    $_SESSION['errorMsg'] = 'All fields are required!';
                 }
+            } else {
+                $_SESSION['errorMsg'] = 'Error occured! Try again please!';
+                $_SESSION['token'] = hash('whirlpool', rand(-1000000, 1000000));
             }
         }
         $categories = $this->categoryClass->getCategories();
         $templateName = 'views/question/add.php';
         include_once $this->layout;
+    }
+
+    public function edit($questionId) {
+        $this->checkUserLogin();
+        $questionId = intval($questionId);
+        if (isset($_POST['edit'])) {
+            $title = $_POST['title'];
+            $text = $_POST['text'];
+            $category = intval($_POST['categoryId']);
+            $tags = preg_filter('/[^a-zA-Zа-яА-Я ,]*/', '', $_POST['tags']);
+            $time = date('Y-m-d H:i:s');
+            $args = ['title' => $title, 'text' => $text, 'categoryId' => $category,
+                'tags' => $tags, 'date' => $time];
+            if ($category != 0 && !empty($title) && !empty($text) && !empty($category) && !empty($tags)) {
+                $result = $this->modelName->update($questionId, $args);
+            } else {
+                $_SESSION['errorMsg'] = 'All fields are required!';
+            }
+            header('Location:' . ROOT_URL . 'question/view/' . $questionId);
+            die;
+        }
+        
+        $questionArr = $this->modelName->find(['where' => "id=$questionId"]);
+        $question = $questionArr[0];
+        $_SESSION['token'] = hash('whirlpool', rand(-1000000, 1000000));
+        $categories = $this->categoryClass->getCategories();
+        include_once ROOT_DIR . '/views/question/edit.php';
     }
 
     public function checkUserLogin() {
