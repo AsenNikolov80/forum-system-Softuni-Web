@@ -107,7 +107,7 @@ table{
     border: 1px solid #0cbb12;
     padding: 5px;
     box-shadow: 0 0 10px black;
-    width: 26%;
+    width: 30%;
     input{
         display: inline-block;
         margin: 0;
@@ -122,6 +122,7 @@ table{
         margin: 5px;
         padding: 10px;
         display: inline-block;
+        text-align: right;
     }
     select{
         padding: 2px;
@@ -179,7 +180,7 @@ table{
     padding: 5px;
     margin: 10px;
 }
-.pageClass{
+.pageClass{    
     margin: 5px;
     padding: 5px;
     text-align: center;
@@ -189,12 +190,11 @@ table{
     color: black;
     display: inline-block;
 }
-
 .inactive{
     background-color: gray;
 }
 .active{
-    background-color: red;
+    background-color: green;
 }
 .active,.inactive{
     color: white;
@@ -202,21 +202,29 @@ table{
 }
 .editQuestion{
     border: 1px dotted black;
-
+    min-width: 350px;
     box-shadow: 0 0 10px blue;
     padding: 5px;
     textarea{
-        margin-left: 10px;
-        width: 89;
+        width: 64%;
+        height: 100px;
+        display: table-cell;
+        vertical-align: middle;
+        margin-bottom: 15px;
     }
     select{
-        margin-left: 10px;
     }
     div>div{
-        margin-left: 10px;
+        display: inline-block;
+        text-align: right;
+        width: 30%;
     }
     *{
         font-size: 0.85em !important;
+    }
+    input{
+        display: inline-block;
+        width: 62%;
     }
 }
 
@@ -251,13 +259,15 @@ h2{
     border-radius: 10px;
     padding: 5px;
     width: 86%;
-    margin: 0 auto;
-    margin-bottom: 20px;
+    background-color: #8ba79c;
+    color: white;
+    margin: 20px auto;
+    margin-bottom: 30px;
 }
-#addNewAnswerButton,input[type='submit']{
+#addNewAnswerButton, input[type='submit']{
     border: 1px solid white;
     border-radius: 10px;
-    margin: 10px;
+    margin: 10px auto;
     background-color: #ccc;
     box-shadow: 0 0 20px black;
     padding: 5px;
@@ -269,4 +279,27 @@ h2{
 }
 table{
     margin: 10px;
+}
+@media (max-width: 768px){
+    body{
+        font-size: 0.95em;
+    }
+    #addForm{
+        width: 80% !important;
+    }
+}
+
+@media (max-width: 600px){
+    header li{
+        font-size: 0.9em;
+        margin: 5px;
+    }
+    main{
+        padding: 0;
+    }
+    input{
+        margin: 5px auto;
+        width: 80%;
+        font-size: 0.75em;
+    }
 }

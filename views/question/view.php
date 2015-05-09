@@ -23,7 +23,7 @@ if (isset($_SESSION['errorMsg'])) {
             <div id="first"><?= $question['title'] ?></div>
             <?php if (!empty($this->userLogged) && $this->userLogged['username'] === $question['username']) { ?>
                 <span style="margin-left: 10px;">
-                    <img class="opener" id="<?= $question['id'] ?>" src="<?= ROOT_URL . 'img/edit.gif'; ?>" style="width: 20px" />
+                    <img class="opener" id="<?= $question['id'] ?>" src="<?= ROOT_URL . 'img/edit.gif'; ?>" style="width: 20px;cursor: pointer" />
                 </span>  
             <?php }
             ?>
@@ -63,10 +63,10 @@ if (isset($_SESSION['errorMsg'])) {
             },
             hide: {
                 effect: "explode",
-                duration: 1000
+                duration: 2000
             },
             width: "auto",
-            position: {my: "left top", at: "left+30% top", of: window},
+            position: {my: "left top", at: "left+20% top", of: window},
             modal: true
         });
 

@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/forum-system/scss/style.scss</file>
-            <file>file:/D:/xampp/htdocs/forum-system/views/question/view.php</file>
-            <file>file:/D:/xampp/htdocs/forum-system/controllers/Question.php</file>
-            <file>file:/D:/xampp/htdocs/forum-system/views/question/edit.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/views/answers/add.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/views/question/index.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/controllers/Question.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/scss/style.scss</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/views/elements/showQuestions.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/controllers/Answer.php</file>
+            <file>file:/F:/xampp/htdocs/forum-system-local/views/question/view.php</file>
         </group>
     </open-files>
 </project-private>

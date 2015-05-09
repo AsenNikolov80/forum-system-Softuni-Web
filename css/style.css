@@ -96,7 +96,7 @@ table {
   border: 1px solid #0cbb12;
   padding: 5px;
   box-shadow: 0 0 10px black;
-  width: 26%; }
+  width: 30%; }
   .addQuestion input {
     display: inline-block;
     margin: 0;
@@ -108,7 +108,8 @@ table {
     width: 25%;
     margin: 5px;
     padding: 10px;
-    display: inline-block; }
+    display: inline-block;
+    text-align: right; }
   .addQuestion select {
     padding: 2px;
     width: 213px; }
@@ -170,7 +171,7 @@ table {
   background-color: gray; }
 
 .active {
-  background-color: red; }
+  background-color: green; }
 
 .active, .inactive {
   color: white;
@@ -178,17 +179,24 @@ table {
 
 .editQuestion {
   border: 1px dotted black;
+  min-width: 350px;
   box-shadow: 0 0 10px blue;
   padding: 5px; }
   .editQuestion textarea {
-    margin-left: 10px;
-    width: 89; }
-  .editQuestion select {
-    margin-left: 10px; }
+    width: 64%;
+    height: 100px;
+    display: table-cell;
+    vertical-align: middle;
+    margin-bottom: 15px; }
   .editQuestion div > div {
-    margin-left: 10px; }
+    display: inline-block;
+    text-align: right;
+    width: 30%; }
   .editQuestion * {
     font-size: 0.85em !important; }
+  .editQuestion input {
+    display: inline-block;
+    width: 62%; }
 
 section form {
   width: 50%;
@@ -219,13 +227,15 @@ h2 {
   border-radius: 10px;
   padding: 5px;
   width: 86%;
-  margin: 0 auto;
-  margin-bottom: 20px; }
+  background-color: #8ba79c;
+  color: white;
+  margin: 20px auto;
+  margin-bottom: 30px; }
 
 #addNewAnswerButton, input[type='submit'] {
   border: 1px solid white;
   border-radius: 10px;
-  margin: 10px;
+  margin: 10px auto;
   background-color: #ccc;
   box-shadow: 0 0 20px black;
   padding: 5px; }
@@ -236,5 +246,24 @@ h2 {
 
 table {
   margin: 10px; }
+
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95em; }
+
+  #addForm {
+    width: 80% !important; } }
+@media (max-width: 600px) {
+  header li {
+    font-size: 0.9em;
+    margin: 5px; }
+
+  main {
+    padding: 0; }
+
+  input {
+    margin: 5px auto;
+    width: 80%;
+    font-size: 0.75em; } }
 
 /*# sourceMappingURL=style.css.map */

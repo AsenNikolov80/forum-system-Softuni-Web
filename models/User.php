@@ -15,19 +15,19 @@ class User extends Main {
         $password = mysqli_real_escape_string($this->db, $_POST['password']);
         $password2 = mysqli_real_escape_string($this->db, $_POST['password2']);
         if (empty($username) || empty($password) || empty($email) || empty($fullname)) {
-            echo 'All fields are required!';
+            $_SESSION['errorMsg'] = 'All fields are required!';
         } else {
             if ($password !== $password2) {
-                echo 'Password must match!';
+                $_SESSION['errorMsg'] = 'Password must match!';
             } else {
                 $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 14]);
                 $args = ['username' => $username, 'password' => $password,
                     'fullname' => $fullname, 'email' => $email];
                 $result = $this->insert($args);
                 if ($result) {
-                    echo 'You have registered!';
+                    $_SESSION['errorMsg'] = 'You have registered!';
                 } else {
-                    echo 'Something is wrong!';
+                    $_SESSION['errorMsg'] = 'Something is wrong!';
                 }
             }
         }
@@ -48,7 +48,7 @@ class User extends Main {
             header('Location:' . ROOT_URL . 'secure/index');
             die;
         } else {
-            echo 'Invalid login';
+            $_SESSION['errorMsg'] = 'Invalid login details';
         }
     }
 
@@ -75,7 +75,8 @@ class User extends Main {
         $updatedUser = $this->find(['where' => 'id=' . $id]);
         $auth = \Lib\Auth::getInstance();
         $auth->updateCurrentUser($updatedUser[0]);
-        header('Location:'.ROOT_URL.'secure/edit');die;
+        header('Location:' . ROOT_URL . 'secure/edit');
+        die;
     }
 
     public function logout() {

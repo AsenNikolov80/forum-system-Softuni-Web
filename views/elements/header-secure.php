@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Default</title>
+        <title>Forum system</title>
         <link href="<?php echo ROOT_URL . 'lib/jquery-ui.css'; ?>" rel="stylesheet" type="text/css"/>
         <link href="<?php echo ROOT_URL . 'css/style.css'; ?>" rel="stylesheet" type="text/css"/>
         <script src="<?=ROOT_URL.'/lib/jquery-1.11.2.js';?>" type="text/javascript"></script>
